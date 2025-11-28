@@ -1,28 +1,163 @@
 <!DOCTYPE html>
-<html>
-<link href="assets/css/app.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<meta content="ie=edge" http-equiv="x-ua-compatible">
-<meta content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
-<style type="text/css">
-  * {
-    margin: 0;
-    padding: 0;
-  }
-</style>
-<title>Moto X3M 3</title>
-<meta name="robots" content="noindex,nofollow" />
-<!-- <script type="text/javascript" src="//tbg95.github.io/cloak.js"></script> -->
+<html lang="en">
 
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/icon.png">
+  <title>Moto X3M 3</title>
+
+  <link href="assets/css/app.css" rel="stylesheet" type="text/css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    :root{
+      --brand:#5ee1ff;
+      --glow:0 0 12px rgba(94,225,255,0.65),0 0 32px rgba(155,255,183,0.35);
+      --shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+    html,body{
+      height:100%;
+      background:#000;
+      color:#eaf4ff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    /* Static Menu (top left) */
+    #staticMenu{
+      position:fixed;
+      left:12px;
+      top:12px;
+      z-index:9999;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      user-select:none;
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(135deg,rgba(20,20,28,0.9),rgba(20,20,28,0.6));
+      border:1px solid rgba(94,225,255,0.35);
+      color:#e8f3ff;
+      box-shadow:var(--glow),var(--shadow);
+      font-size:14px;
+      animation:menuEnter 0.6s ease 0.15s both;
+    }
+    #staticMenu a{
+      color:#5ee1ff;
+      font-weight:800;
+      text-decoration:none;
+    }
+    #closeStaticMenu{
+      color:#f55;
+      cursor:pointer;
+      padding:2px 6px;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:rgba(255,255,255,0.06);
+    }
+    @keyframes menuEnter{
+      from{opacity:0;transform:translateY(-8px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    /* Rotating slide in widget (bottom right) */
+    #staticSlideMenu{
+      position:fixed;
+      bottom:24px;
+      right:24px;
+      z-index:9999;
+      width:100px;
+      height:100px;
+      opacity:0;
+      transform:translateX(140px) scale(0.96);
+      pointer-events:none;
+    }
+    #staticSlideMenu a{
+      display:block;
+      width:100%;
+      height:100%;
+    }
+    #staticSlideMenu img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border:0;
+      background:transparent;
+      box-shadow:none;
+      transition:opacity 0.25s ease;
+    }
+    .slide-in{
+      animation:slideIn 2s ease forwards;
+    }
+    .slide-out{
+      animation:slideOut 2s ease forwards;
+    }
+    @keyframes slideIn{
+      from{opacity:0;transform:translateX(140px) scale(0.96);}
+      to{opacity:1;transform:translateX(0) scale(1);}
+    }
+    @keyframes slideOut{
+      from{opacity:1;transform:translateX(0) scale(1);}
+      to{opacity:0;transform:translateX(140px) scale(0.96);}
+    }
+
+    .seo-hidden{
+      position:absolute;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+      clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
+    }
+
+    @media (max-width:600px){
+      #staticMenu{
+        font-size:13px;
+        padding:8px 12px;
+      }
+      #staticSlideMenu{
+        width:88px;
+        height:88px;
+      }
+    }
+  </style>
 </head>
 
 <body dir="ltr">
+  <!-- Static Menu (top left) -->
+  <div id="staticMenu" role="region" aria-label="StaticQuasar menu">
+    <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank" rel="noopener">
+      More Unblocked Games by Static
+    </a>
+    <span id="closeStaticMenu" title="Hide temporarily">✕</span>
+  </div>
 
+  <!-- Rotating quick link widget (bottom right). Order: Google Form -> Discord -> Instagram -->
+  <div id="staticSlideMenu" aria-live="polite">
+    <a id="staticSlideLink"
+       href="https://sites.google.com/view/staticquasar931/google-form"
+       target="_blank"
+       rel="noopener"
+       aria-label="Open Google Form">
+      <img id="staticSlideImg"
+           src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png"
+           alt="StaticQuasar931 Google Form for feedback and requests">
+    </a>
+  </div>
 
+  <!-- Game containers -->
   <div id="content"></div>
   <div id="orientation"></div>
   <div id="loader">Loading ...</div>
+
+  <!-- Original game scripts (unchanged so the game can still load) -->
   <script src="assets/box2dweb/nape.min.js" type="text/javascript">
     var nape = "assets/box2dweb/nape.min.js";
   </script>
@@ -32,6 +167,164 @@
   <script src="assets/box2dweb/bluebird.min.js" type="text/javascript"></script>
   <script src="motox3m3.min.js" type="text/javascript"></script>
 
+  <script type="text/javascript">
+    // Leave warning
+    window.onbeforeunload = function () {
+      return "Are you sure you want to leave? Your session may be interrupted.";
+    };
+
+    // Static Menu show or hide with 3 minute return (ES5 safe, localStorage guarded)
+    (function () {
+      var menu = document.getElementById("staticMenu");
+      var btn  = document.getElementById("closeStaticMenu");
+      var KEY  = "sq931_staticMenu_hidden_until";
+      var canStore = true;
+
+      try {
+        var testKey = "__sq_test__";
+        window.localStorage.setItem(testKey, "1");
+        window.localStorage.removeItem(testKey);
+      } catch (e) {
+        canStore = false;
+      }
+
+      function show() {
+        if (menu) {
+          menu.style.display = "flex";
+        }
+      }
+
+      function scheduleReturn(ms) {
+        window.setTimeout(show, ms);
+      }
+
+      if (canStore) {
+        var until = parseInt(window.localStorage.getItem(KEY) || "0", 10);
+        if (until && Date.now() < until) {
+          if (menu) {
+            menu.style.display = "none";
+          }
+          scheduleReturn(until - Date.now());
+        } else {
+          show();
+        }
+      } else {
+        show();
+      }
+
+      function hideFor3m() {
+        if (!menu) return;
+        menu.style.display = "none";
+        if (!canStore) return;
+        var t = Date.now() + 180000;
+        window.localStorage.setItem(KEY, String(t));
+        scheduleReturn(180000);
+      }
+
+      if (btn) {
+        btn.onclick = hideFor3m;
+      }
+    })();
+
+    // Rotator: Google Form -> Discord -> Instagram (ES5, no async, no const)
+    (function () {
+      var wrap = document.getElementById("staticSlideMenu");
+      var a    = document.getElementById("staticSlideLink");
+      var img  = document.getElementById("staticSlideImg");
+      if (!wrap || !a || !img) return;
+
+      var ROTATION = [
+        {
+          src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/GoogleForm.png",
+          alt:  "StaticQuasar931 Google Form for feedback and requests",
+          link: "https://sites.google.com/view/staticquasar931/google-form"
+        },
+        {
+          src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Join_Our_DC_StaticQuassar931_lcplrf.png",
+          alt:  "Join the StaticQuasar931 Discord",
+          link: "https://discord.gg/DP2hM7RRhR"
+        },
+        {
+          src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Follow-us--IG",
+          alt:  "StaticQuasar931 Instagram",
+          link: "https://www.instagram.com/freeschoolgamepage/"
+        }
+      ];
+
+      // Preload images
+      var i;
+      for (i = 0; i < ROTATION.length; i++) {
+        var p = new Image();
+        p.src = ROTATION[i].src;
+      }
+
+      var index = 0;
+
+      function apply(idx) {
+        var state = ROTATION[idx];
+        a.href = state.link;
+        img.alt = state.alt;
+        img.style.opacity = "0";
+        window.setTimeout(function () {
+          img.src = state.src;
+        }, 50);
+      }
+
+      img.onload = function () {
+        img.style.opacity = "1";
+      };
+
+      function cycleOnce() {
+        apply(index);
+        wrap.style.pointerEvents = "auto";
+        wrap.className = "slide-in";
+        window.setTimeout(function () {
+          wrap.className = "slide-out";
+          wrap.style.pointerEvents = "none";
+        }, 7000);
+      }
+
+      cycleOnce();
+      window.setInterval(function () {
+        index = (index + 1) % ROTATION.length;
+        cycleOnce();
+      }, 27000);
+    })();
+
+    // Keyboard secret toggle: y + u + i to toggle all Visual SEO
+    (function () {
+      var ids = ["staticMenu", "staticSlideMenu"];
+      var seq = [];
+      var target = ["y", "u", "i"];
+
+      function toggle() {
+        var i;
+        for (i = 0; i < ids.length; i++) {
+          var el = document.getElementById(ids[i]);
+          if (!el) continue;
+          var style = window.getComputedStyle(el);
+          var hidden = (style.display === "none");
+          el.style.display = hidden ? (ids[i] === "staticMenu" ? "flex" : "block") : "none";
+        }
+      }
+
+      window.addEventListener("keydown", function (e) {
+        var k = (e.key || "").toLowerCase();
+        if (!k) return;
+        seq.push(k);
+        if (seq.length > 3) seq.shift();
+        if (seq[0] === target[0] && seq[1] === target[1] && seq[2] === target[2]) {
+          toggle();
+        }
+      });
+    })();
+  </script>
+
+  <!-- Hidden SEO block (invisible, but safe for layout) -->
+  <div class="seo-hidden" aria-hidden="true">
+    <h1>Moto X3M 3 unblocked by StaticQuasar931</h1>
+    <p>Moto X3M 3 unblocked with working game scripts, StaticQuasar931 Visual SEO, and support for school or Chromebook players.</p>
+  </div>
 </body>
 
 </html>
